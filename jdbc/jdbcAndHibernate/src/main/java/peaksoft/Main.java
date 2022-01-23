@@ -7,7 +7,7 @@ import peaksoft.service.UserServiceImpl;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class Main {
+    public class Main {
     static Scanner sc = new Scanner(System.in);
     static UserService userService = new UserServiceImpl();
 
