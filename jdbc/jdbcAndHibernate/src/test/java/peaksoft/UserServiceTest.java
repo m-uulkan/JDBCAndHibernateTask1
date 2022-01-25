@@ -2,6 +2,8 @@ package peaksoft;
 
 import org.junit.Assert;
 import org.junit.Test;
+import peaksoft.dao.UserDao;
+import peaksoft.dao.UserDaoHibernateImpl;
 import peaksoft.model.User;
 import peaksoft.service.UserService;
 import peaksoft.service.UserServiceImpl;

@@ -12,6 +12,7 @@ import java.util.Scanner;
     public class Main {
     static Scanner sc = new Scanner(System.in);
     static UserService userService = new UserServiceImpl();
+//    static UserDaoHibernateImpl userDaoHibernate=new UserDaoHibernateImpl();
 
 
     public static void main(String[] args) throws Exception {
