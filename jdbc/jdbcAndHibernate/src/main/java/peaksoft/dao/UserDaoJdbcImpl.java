@@ -18,7 +18,7 @@ public class UserDaoJdbcImpl implements UserDao {
         Connection connect = util.connect();
         Statement statement = connect.createStatement();
         //Query to create a table
-        String query = "CREATE TABLE users("
+        String query = "CREATE TABLE if not exists users("
                 + "id serial primary key, "
                 + "name VARCHAR (100) NOT NULL, "
                 + "Lastname VARCHAR(100) NOT NULL, "
@@ -43,11 +43,11 @@ public class UserDaoJdbcImpl implements UserDao {
             PreparedStatement prtst= connection.prepareStatement(SQL)){
             prtst.setString(1,name);
             prtst.setString(2,lastName);
-            prtst.setInt(3,age);
+            prtst.setByte(3,age);
             prtst.executeUpdate();
             System.out.println(name+" user already saved");
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
@@ -68,27 +68,23 @@ public class UserDaoJdbcImpl implements UserDao {
     }
 
     public List<User> getAllUsers() {
-        String SQL="select*from users";
-        List<User>userList=new ArrayList<>();
-        User user=new User();
+        String SQL = "select*from users";
+        List<User> userList = new ArrayList<>();
 
-        try (Connection connection= util.connect();
-        Statement statement= connection.createStatement();
-             ResultSet rset= statement.executeQuery(SQL))
-        {
-          while(rset.next()){
-//             user.setId(rset.getLong("id"));
-//             user.setName(rset.getString("name"));
-//             user.setLastName(rset.getString("lastname"));
-//             user.setAge((byte) rset.getInt("age"));
-              System.out.println(rset.getInt("id")+" " +rset.getString("name")+
-                     " "+ rset.getString("lastname")+" " +rset.getByte("age"));
-              userList.add(user);
-          }
-        }catch (SQLException e){
+        try (Connection connection = util.connect();
+             Statement statement = connection.createStatement();
+             ResultSet rset = statement.executeQuery(SQL)) {
+            while (rset.next()) {
+                userList.add(new User(rset.getLong("id"),
+                        rset.getString("name"),
+                        rset.getString("lastname"),
+                        rset.getByte("age")));
+            }return userList;
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }
-        return userList;
+
+        }return null;
+
     }
 
     public void cleanUsersTable() {

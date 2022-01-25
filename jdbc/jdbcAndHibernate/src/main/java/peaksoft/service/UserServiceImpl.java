@@ -34,8 +34,8 @@ public class UserServiceImpl implements UserService {
 
 
     public List<User> getAllUsers() {
-        dao.getAllUsers();
-        return userList;
+      return   dao.getAllUsers();
+
     }
 
     public void cleanUsersTable() {

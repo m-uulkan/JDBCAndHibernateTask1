@@ -1,5 +1,7 @@
 package peaksoft;
 
+import peaksoft.dao.UserDao;
+import peaksoft.dao.UserDaoHibernateImpl;
 import peaksoft.dao.UserDaoJdbcImpl;
 import peaksoft.service.UserService;
 import peaksoft.service.UserServiceImpl;
@@ -10,6 +12,7 @@ import java.util.Scanner;
     public class Main {
     static Scanner sc = new Scanner(System.in);
     static UserService userService = new UserServiceImpl();
+
 
     public static void main(String[] args) throws Exception {
 
@@ -29,7 +32,7 @@ import java.util.Scanner;
                     userService.saveUser("Hadicha", "Zamirbekova", (byte) 19);
                 }
                 case 3 -> {
-                    userService.getAllUsers();
+                    System.out.println(userService.getAllUsers());
                 }
                 case 4 -> {
                     System.out.println("Write id");
