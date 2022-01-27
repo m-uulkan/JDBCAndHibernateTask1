@@ -21,14 +21,14 @@ public class UserDaoJdbcImpl implements UserDao {
         String query = "CREATE TABLE if not exists users("
                 + "id serial primary key, "
                 + "name VARCHAR (100) NOT NULL, "
-                + "Lastname VARCHAR(100) NOT NULL, "
+                + "Last_name VARCHAR(100) NOT NULL, "
                 + "age INT  NOT NULL); ";
 
         statement.executeUpdate(query);
         System.out.println("Table Created......");
     }
     public void dropUsersTable() {
-        String SQL = "DROP TABLE  users";
+        String SQL = "DROP TABLE if exists users";
         try (Connection connection = util.connect();
              Statement stmt = connection.createStatement()){
              stmt.executeUpdate(SQL);
@@ -38,7 +38,7 @@ public class UserDaoJdbcImpl implements UserDao {
         }
     }
     public void saveUser(String name, String lastName, byte age) {
-        String SQL="insert into users(name,lastname,age)values(?,?,?)";
+        String SQL="insert into users(name,last_name,age)values(?,?,?)";
         try(Connection connection= util.connect();
             PreparedStatement prtst= connection.prepareStatement(SQL)){
             prtst.setString(1,name);
@@ -70,20 +70,22 @@ public class UserDaoJdbcImpl implements UserDao {
     public List<User> getAllUsers() {
         String SQL = "select*from users";
         List<User> userList = new ArrayList<>();
+        User user=new User();
 
         try (Connection connection = util.connect();
              Statement statement = connection.createStatement();
              ResultSet rset = statement.executeQuery(SQL)) {
             while (rset.next()) {
-                userList.add(new User(rset.getLong("id"),
-                        rset.getString("name"),
-                        rset.getString("lastname"),
-                        rset.getByte("age")));
-            }return userList;
+                     user.setId(rset.getLong("id"));
+                       user.setName(rset.getString("name"));
+                       user.setLastName(rset.getString("last_name"));
+                       user.setAge(rset.getByte("age"));
+                       userList.add(user);
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
 
-        }return null;
+        }return userList;
 
     }
 

@@ -4,6 +4,7 @@ import peaksoft.dao.UserDao;
 import peaksoft.dao.UserDaoHibernateImpl;
 import peaksoft.dao.UserDaoJdbcImpl;
 import peaksoft.model.User;
+import peaksoft.util.Util;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
 
 
 public class UserServiceImpl implements UserService {
+
      UserDao dao=new UserDaoHibernateImpl();
 
     public void createUsersTable() throws SQLException {

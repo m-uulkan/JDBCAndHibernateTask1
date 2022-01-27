@@ -12,11 +12,8 @@ import java.util.Scanner;
     public class Main {
     static Scanner sc = new Scanner(System.in);
     static UserService userService = new UserServiceImpl();
-//    static UserDaoHibernateImpl userDaoHibernate=new UserDaoHibernateImpl();
-
 
     public static void main(String[] args) throws Exception {
-
 
         while (true) {
             System.out.println();
@@ -49,16 +46,14 @@ import java.util.Scanner;
                 default -> throw new Exception("Ввели неправильную команду");
             }
         }
+
     }
-
-
-    static void commands(){
-        System.out.println("Press 1 to create table");
-        System.out.println("Press 2 to save user");
-        System.out.println("Press 3 to get all users");
-        System.out.println("Press 4 to remove user by id");
-        System.out.println("Press 5 to drop table");
-        System.out.println("Press 6 to clean table");
+        static void commands () {
+            System.out.println("Press 1 to create table");
+            System.out.println("Press 2 to save user");
+            System.out.println("Press 3 to get all users");
+            System.out.println("Press 4 to remove user by id");
+            System.out.println("Press 5 to drop table");
+            System.out.println("Press 6 to clean table");
+        }
     }
-
-}
