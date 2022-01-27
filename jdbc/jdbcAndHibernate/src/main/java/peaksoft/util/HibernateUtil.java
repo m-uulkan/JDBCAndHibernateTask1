@@ -8,8 +8,6 @@ import org.hibernate.cfg.Configuration;
 
 import peaksoft.model.User;
 
-import java.util.Properties;
-
 public class HibernateUtil {
 
     private static SessionFactory sessionFactory;
@@ -23,9 +21,9 @@ public class HibernateUtil {
                 .setProperty("hibernate.connection.password", "12345")
                 .setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL9Dialect")
                 .setProperty("hibernate.show_sql", "true")
-                .setProperty("hibernate.hbm2ddl_auto", "create")
+                .setProperty("hibernate.hbm2ddl_auto", "update")
                 .buildSessionFactory();
         return sessionFactory;
     }
 
-    }
+}

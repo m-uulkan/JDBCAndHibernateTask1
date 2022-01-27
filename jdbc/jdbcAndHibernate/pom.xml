@@ -20,8 +20,6 @@
   </properties>
 
   <dependencies>
-    <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-site-plugin -->
-
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
